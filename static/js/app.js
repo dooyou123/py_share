@@ -7,13 +7,15 @@ document
     const date = document.getElementById("date").value;
     const shift = document.getElementById("shift").value;
     const notes = document.getElementById("notes").value;
+    const created = new Date().toISOString(); // Get current time in ISO format
+    document.getElementById("created").value = created;
 
     const response = await fetch("/add_entry", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, date, shift, notes }),
+      body: JSON.stringify({ name, date, shift, notes, created }),
     });
 
     if (response.ok) {
@@ -33,22 +35,38 @@ async function loadEntries() {
   const entryList = document.getElementById("entryList");
   entryList.innerHTML = ""; // 기존 데이터를 초기화
 
-  entries.forEach((entry, index) => {
+  entries.forEach((entry) => {
     const entryDiv = document.createElement("div");
     entryDiv.className = "entry";
+    entryDiv.setAttribute("data-id", entry.id); // 고유한 id를 data-id에 저장
+
+    // created 값에서 날짜와 시간 추출
+    const createdDateTime = formatDateTime(entry.created);
 
     entryDiv.innerHTML = `
-            <p><strong>${entry.name}</strong> (${entry.date}) - ${
-      entry.shift
-    }</p>
-            <p>${entry.notes}</p>
-            <button onclick="deleteEntry(${
-              index + 2
-            })" class="delete-btn">삭제</button>
-        `;
+        <p><strong>${entry.name}</strong> (${entry.date} - ${entry.shift}조) / 작성시각: ${createdDateTime} </p>
+        <p>${entry.notes}</p>
+        <button onclick="deleteEntry(${entry.id})" class="delete-btn">삭제</button>
+      `;
 
     entryList.appendChild(entryDiv);
   });
+}
+
+// 날짜와 시간 형식을 반환하는 함수
+function formatDateTime(dateString) {
+  const date = new Date(dateString); // 문자열을 Date 객체로 변환
+
+  const year = date.getFullYear(); // 연도
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // 월
+  const day = String(date.getDate()).padStart(2, "0"); // 일
+
+  const hours = String(date.getHours()).padStart(2, "0"); // 시
+  const minutes = String(date.getMinutes()).padStart(2, "0"); // 분
+  const seconds = String(date.getSeconds()).padStart(2, "0"); // 초
+
+  // 연/월/일 시간:분:초 형식으로 반환
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
 document.getElementById("search-button").addEventListener("click", function () {
@@ -59,7 +77,7 @@ document.getElementById("search-button").addEventListener("click", function () {
 });
 
 document.getElementById("search-input").addEventListener("input", function () {
-  // 입력할때마다 검색
+  // 입력할 때마다 검색
   const searchTerm = document
     .getElementById("search-input")
     .value.toLowerCase();
@@ -71,7 +89,12 @@ function filterEntries(searchTerm) {
 
   entries.forEach((entry) => {
     const entryText = entry.textContent.toLowerCase(); // 항목의 텍스트 내용 가져오기
-    if (entryText.includes(searchTerm)) {
+
+    // 이름, 날짜, 쉬프트, 내용 등을 포함한 검색
+    if (
+      entryText.includes(searchTerm) ||
+      entry.querySelector("p").textContent.toLowerCase().includes(searchTerm)
+    ) {
       entry.style.display = "block"; // 검색어 포함 시 표시
     } else {
       entry.style.display = "none"; // 검색어 미포함 시 숨김
@@ -79,24 +102,23 @@ function filterEntries(searchTerm) {
   });
 }
 
-async function deleteEntry(rowNumber) {
+async function deleteEntry(id) {
   const response = await fetch("/delete_entry", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ row_number: rowNumber }),
+    body: JSON.stringify({ id }), // 고유 id를 서버로 전송
   });
 
   if (response.ok) {
     alert("데이터를 삭제했습니다!");
-    loadEntries();
+    loadEntries(); // 삭제 후 데이터 재로딩
   } else {
     alert("데이터 삭제를 실패했습니다.");
   }
 }
 
-// Initial load
 loadEntries();
 
 function updateClock() {

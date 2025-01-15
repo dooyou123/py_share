@@ -17,8 +17,14 @@
       <form id="handoverForm">
         <input type="text" id="name" placeholder="작성자" required />
         <input type="date" id="date" required />
-        <input type="text" id="shift" placeholder="쉬프트 이름" required />
+        <input type="text" id="shift" placeholder="쉬프트 이름" list="shift-options" required />
+        <datalist id="shift-options">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </datalist>
         <textarea id="notes" placeholder="내용" required></textarea>
+        <input type="hidden" id="created" />
         <button type="submit">작성하기</button>
       </form>
       <div id="previous-entries-container">
