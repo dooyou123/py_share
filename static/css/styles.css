@@ -1,0 +1,192 @@
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 40px; /* padding 증가 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 16px; /* body 기본 폰트 크기 */
+}
+
+.container {
+  width: 95%;
+  max-width: 1200px;
+  background: #ffffff;
+  padding: 40px; /* padding 증가 */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 30px; /* margin-bottom 값 증가 */
+  display: flex;
+  justify-content: space-between; /* 양쪽 정렬 */
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* gap 값 증가 */
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 17px; /* label 폰트 사이즈 증가 */
+}
+
+input,
+textarea {
+  font-size: 18px;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  height: 45px; /* input 높이 약간 증가 */
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+textarea {
+  min-height: 150px; /* min-height 값 유지 */
+  resize: vertical;
+}
+
+button {
+  font-size: 18px;
+  padding: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#entryList {
+  margin-top: 40px; /* margin-top 값 증가 */
+  border-top: 1px solid #ddd;
+  padding-top: 30px; /* padding-top 값 증가 */
+}
+
+.entry {
+  padding: 20px; /* padding 값 증가 */
+  margin-bottom: 20px; /* margin-bottom 값 증가 */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-size: 17px; /* entry 내용 font 사이즈 증가 */
+}
+
+.entry p strong {
+  margin-right: 10px;
+}
+
+.delete-btn {
+  margin-top: 15px; /* margin-top 값 증가 */
+  padding: 10px 20px; /* padding 값 증가 */
+  font-size: 16px;
+  color: white;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #bd2130;
+}
+
+#clock {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#search-container {
+  display: flex;
+  margin-bottom: 30px; /* margin-bottom 값 증가 */
+}
+
+#search-input {
+  flex-grow: 1;
+  padding: 12px; /* padding 값 증가 */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* border-radius 값 증가 */
+  margin-right: 10px;
+  font-size: 17px; /* 폰트 사이즈 약간 증가 */
+}
+
+#search-button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px; /* 폰트 사이즈 약간 증가 */
+}
+
+#footer {
+  text-align: right; /* 가운데 정렬 */
+  margin-top: 40px; /* 위쪽 여백 추가 */
+  padding: 20px;
+  background-color: #f8f9fa; /* 배경색 추가 */
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+  color: #777;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  .container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  input,
+  textarea,
+  button {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+
+  .entry {
+    font-size: 15px;
+    padding: 15px;
+  }
+
+  .delete-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  #search-input,
+  #search-button {
+    font-size: 15px;
+    padding: 10px;
+  }
+}

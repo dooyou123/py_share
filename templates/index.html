@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오늘의 인수인계</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="version" content="1.0.0">
+    <meta name="last-updated" content="2025-01-15">
+  </head>
+  <body>
+    <div class="container">
+        <h1>오늘의 인수인계<span id="clock"></span> </h1>
+        <p>안녕하세요, {{ username }}님! <a href="{{ url_for('logout') }}">로그아웃</a></p>
+      <form id="handoverForm">
+        <input type="text" id="name" placeholder="작성자" required />
+        <input type="date" id="date" required />
+        <input type="text" id="shift" placeholder="쉬프트 이름" required />
+        <textarea id="notes" placeholder="내용" required></textarea>
+        <button type="submit">작성하기</button>
+      </form>
+      <div id="previous-entries-container">
+        <h2>이전 인수인계 내역</h2>
+        
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="이름, 날짜, 내용 검색...">
+            <button id="search-button">검색</button>
+        </div>
+        <div id="entryList">
+            </div>
+
+    </div>
+    <div class="container">
+    </div>
+<footer id="footer">
+    <p>Made by Bruce Kang</p>
+    <span id="footer-version"></span>
+</footer>
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
