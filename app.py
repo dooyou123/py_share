@@ -1,4 +1,3 @@
-import os
 from flask import Flask, request, jsonify, render_template, redirect, url_for, flash
 from supabase import create_client, Client
 from flask_login import (
@@ -9,7 +8,6 @@ from flask_login import (
     login_required,
 )
 from werkzeug.security import generate_password_hash, check_password_hash
-from dotenv import load_dotenv  # dotenv 추가
 from forms import LoginForm
 from models import User
 
