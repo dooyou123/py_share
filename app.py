@@ -13,9 +13,6 @@ from dotenv import load_dotenv  # dotenv 추가
 from forms import LoginForm
 from models import User
 
-# Load environment variables from .env file
-load_dotenv()
-
 app = Flask(__name__)
 app.config.from_mapping(
     SUPABASE_URL="https://uoyknxfdxixodakuhapz.supabase.co",  # 실제 Supabase URL
