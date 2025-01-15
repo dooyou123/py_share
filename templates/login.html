@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>로그인</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
         font-family: "Noto Sans KR", sans-serif;
@@ -11,6 +12,8 @@
         align-items: center;
         min-height: 100vh;
         margin: 0;
+        padding: 20px; /* 모바일에서 여백 추가 */
+        box-sizing: border-box; /* padding이 width에 포함되도록 설정 */
       }
 
       .login-container {
@@ -18,7 +21,9 @@
         padding: 40px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 350px;
+        width: 90%; /* 화면 너비에 맞춤 */
+        max-width: 400px; /* 최대 너비 제한 */
+        box-sizing: border-box; /* padding이 width에 포함되도록 설정 */
       }
 
       .login-container h1 {
