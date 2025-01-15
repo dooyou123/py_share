@@ -3,3 +3,4 @@ oauth2client
 Flask-Login
 Flask-WTF
 supabase
+gunicorn
