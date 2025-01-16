@@ -44,7 +44,7 @@ async function loadEntries() {
     const createdDateTime = formatDateTime(entry.created);
 
     entryDiv.innerHTML = `
-        <p><strong>${entry.name}</strong> (${entry.date} - ${entry.shift}조) / 작성시각: ${createdDateTime} </p>
+        <p><strong>${entry.name}</strong> (${entry.date}</strong> - ${entry.shift}조) / 작성시각: ${createdDateTime} </p>
         <p>${entry.notes}</p>
         <button onclick="deleteEntry(${entry.id})" class="delete-btn">삭제</button>
       `;
@@ -103,19 +103,21 @@ function filterEntries(searchTerm) {
 }
 
 async function deleteEntry(id) {
-  const response = await fetch("/delete_entry", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ id }), // 고유 id를 서버로 전송
-  });
+  if (confirm("내용을 삭제하시겠습니까?")) {
+      const response = await fetch("/delete_entry", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }), // 고유 id를 서버로 전송
+      });
 
-  if (response.ok) {
-    alert("데이터를 삭제했습니다!");
-    loadEntries(); // 삭제 후 데이터 재로딩
-  } else {
-    alert("데이터 삭제를 실패했습니다.");
+      if (response.ok) {
+          alert("데이터를 삭제했습니다!");
+          loadEntries(); // 삭제 후 데이터 재로딩
+      } else {
+          alert("데이터 삭제를 실패했습니다.");
+      }
   }
 }
 
