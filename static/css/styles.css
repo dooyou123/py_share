@@ -93,6 +93,11 @@ button:hover {
   font-size: 17px; /* entry 내용 font 사이즈 증가 */
 }
 
+.entry p {
+  white-space: pre-wrap; /* 줄바꿈 및 공백 유지 */
+}
+
+
 .entry p strong {
   margin-right: 10px;
 }
