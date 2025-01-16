@@ -65,7 +65,7 @@ textarea {
 button {
   font-size: 18px;
   padding: 15px;
-  background-color: #007bff;
+  background-color: #000000;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -74,7 +74,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #514d4d;
 }
 
 #entryList {
